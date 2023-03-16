@@ -125,6 +125,7 @@ Route::post('order-assign', [OrderController::class,'order_assign_driver'])->nam
 //Route::match(['get', 'post'], 'pending-order',[OrderController::class, 'pending_order'])->name('pending-order');
 Route::get('pending-order', [OrderController::class,'pending_order'])->name('pending_order');
 Route::get('all-order',[OrderController::class, 'all_order'])->name('all-order');
+
 Route::match(['get', 'post'], 'assigned-order',[OrderController::class, 'assigned_order']);
 Route::match(['get', 'post'], 'outofdelivery-order',[OrderController::class, 'outofdelivery_order']);
 Route::match(['get', 'post'], 'delivery-view',[OrderController::class, 'delivery_view']);
@@ -184,6 +185,7 @@ Route::match(['get', 'post'], 'reports/daily_Report',[ReportController::class, '
 Route::post('filter-order-by-date-report',[ReportController::class, 'filter_order_by_date_report'])->name('filter_order_by_date_report');
 Route::post('filter-order-by-date-customer',[ReportController::class, 'filter_order_by_date_customer'])->name('filter_order_by_date_customer');
 Route::post('filter-order-by-date-del',[ReportController::class, 'filter_order_by_date_del'])->name('filter_order_by_date_del');
+
 
 
 });

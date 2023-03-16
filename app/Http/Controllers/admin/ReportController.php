@@ -295,68 +295,33 @@ class ReportController extends Controller
 
         $customer_plans = Custom_plan::where('status', 1)->get();
         $category = Category::All();
-        $menu = Menu::All();
+        $menu = Menu::join('categories','categories.id','=','menus.category')
+                      ->get();
+      
 
-
-        $mnu_arr = [];
+        $mnu_arr = [];$each =[];
         $i = 0;
-        foreach ($customer_plans as $key => $cst_plan) {
-            $mnu_arr[$i] = json_decode($cst_plan->menu, true);
-            $i++;
-        }
-        $count = count($mnu_arr);
-
-
-        $m_arr = [];
-        $k = 0;
-        for ($j = 0; $j < $count; $j++) {
-            foreach ($mnu_arr[$j] as $dt) {
-                $m_arr[] = $dt;
-                $k++;
-            }
-        }
-        // dd($m_arr);
-
-
-        $tdy_arr = [];
-        $n = 0;
-        foreach ($m_arr as $tdy) {
-            if ($tdy['date'] == $now) {
-                $tdy_arr['date'][] = $tdy['date'];
-                $tdy_arr['breakfast'][] = $tdy['breakfast'];
-                $tdy_arr['lunch'][] = $tdy['lunch'];
-                $tdy_arr['snacks'][] = $tdy['snacks'];
-                $tdy_arr['dinner'][] = $tdy['dinner'];
-            }
-            $n++;
-        }
-        $cnt = count($tdy_arr);
-
-        // dd(array($tdy_arr['snacks'][0]));
-        $result = call_user_func_array('array_merge', $tdy_arr['snacks']);
         
-
-        $data = [];
-        $m = 0;
-        for($i = 0; $i < $cnt; $i++){
-            foreach($tdy_arr as $td){
-                $data['data'] = $td[$i];
-                $m++;        
-            }
+        foreach ($customer_plans as $cst_plan) {
+            $mnu_arr[] =  json_decode($cst_plan->menu);
+            
         }
+    //   var_dump($mnu_arr);die();
+      $bf_array=[];
+       foreach($mnu_arr as $mr){
+            foreach($mr as $m){
 
-        dd($data);
+                if(date("d-m-Y",strtotime($m->date)) == $now ){
 
-        // $data = [];
-        // $m = 0;
-        // for($i = 0; $i < $cnt; $i++){
-        //     foreach($tdy_arr[$i] as $td){
-        //         dd($td->date);
-        //         $data[]['data'] = $td;
-        //         $m++;        
-        //     }
-        // }
-        // dd($data);
+                    $bf_array[] = $m->breakfast;
+                }
+            }
+
+       }
+        var_dump($bf_array);die();
+       
+       
+
         return view('reports.daily_Report');
     }
     public function filter_order_by_date_customer(Request $request){
@@ -524,6 +489,5 @@ class ReportController extends Controller
                 ';
     }
 
-     
 
 }

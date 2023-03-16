@@ -81,41 +81,9 @@
                          
                           
                         </tr>
-                       <tr>
-                        
-                          
-                           <td>Break Fast</td>
-                         
-                    
-                           <td> Appam</td>
-                           <td>5</td>
-                         
-                          
-                        </tr>
+                      
 
-                        <tr>
-                        
-                        
-                           <td>Lunch</td>
-                         
-                    
-                          <td> Chicken,Arabic Breads, Paratta</td>
-                           <td>15</td>
-                         
-                          
-                        </tr>
 
-                        <tr>
-                        
-                    
-                           <td>Dinner</td>
-                         
-                    
-                           <td> Chicken,Arabic Breads, Paratta</td>
-                           <td>10</td>
-                         
-                          
-                        </tr>
 
                         
                     
